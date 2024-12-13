@@ -1,32 +1,26 @@
-from pyrogram import Client
-from config import API_ID, API_HASH, BOT_TOKEN
+from pyrogram.client import Client
+from config import *
+
 
 class Bot(Client):
-
     def __init__(self):
         super().__init__(
-        "vj join request bot",
-         api_id=API_ID,
-         api_hash=API_HASH,
-         bot_token=BOT_TOKEN,
-         plugins=dict(root="plugins"),
-         workers=50,
-         sleep_threshold=10
+            name="Aman vishwakarma",
+            api_id=API_ID,
+            api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
+            workers=200,
+            plugins={"root": "plugins"},
+            sleep_threshold=15,
         )
 
-      
     async def start(self):
-            
         await super().start()
         me = await self.get_me()
-        self.username = '@' + me.username
-            
-        print('Bot Started Powered By @VJ_Botz')
-
-
+        print(f"{me.first_name} Iꜱ Sᴛᴀʀᴛᴇᴅ.....✨️")
+        await self.send_message(ADMIN, f"**__{me.first_name}  Iꜱ Sᴛᴀʀᴛᴇᴅ.....✨️__**")
     async def stop(self, *args):
-
         await super().stop()
-        print('Bot Stopped Bye')
+        print("Bᴏᴛ Iꜱ Sᴛᴏᴘᴘᴇᴅ....")
 
 Bot().run()
